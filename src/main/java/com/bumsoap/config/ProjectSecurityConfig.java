@@ -26,7 +26,8 @@ public class ProjectSecurityConfig {
 
     @Bean
     ClientRegistrationRepository clientRegistrationRepository() {
-        return new InMemoryClientRegistrationRepository();
+        var github = githubClientRegistration();
+        return new InMemoryClientRegistrationRepository(github);
     }
 
     private ClientRegistration githubClientRegistration() {
