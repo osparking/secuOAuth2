@@ -1,4 +1,4 @@
-package com.bumsoap.secuOAuth2;
+package com.bumsoap;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

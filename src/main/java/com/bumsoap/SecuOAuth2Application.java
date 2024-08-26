@@ -1,4 +1,4 @@
-package com.bumsoap.secuOAuth2;
+package com.bumsoap;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
