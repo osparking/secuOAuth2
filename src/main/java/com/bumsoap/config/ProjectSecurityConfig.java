@@ -27,11 +27,17 @@ public class ProjectSecurityConfig {
     @Bean
     ClientRegistrationRepository clientRegistrationRepository() {
         var github = githubClientRegistration();
-        return new InMemoryClientRegistrationRepository(github);
+        var facebook = facebookClientRegistration();
+        return new InMemoryClientRegistrationRepository(facebook);
     }
 
     private ClientRegistration githubClientRegistration() {
         return CommonOAuth2Provider.GITHUB.getBuilder("github")
+                .clientId("").clientSecret("").build();
+    }
+
+    private ClientRegistration facebookClientRegistration() {
+        return CommonOAuth2Provider.FACEBOOK.getBuilder("facebook")
                 .clientId("").clientSecret("").build();
     }
 }
