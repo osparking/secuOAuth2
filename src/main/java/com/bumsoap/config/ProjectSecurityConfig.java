@@ -1,7 +1,10 @@
 package com.bumsoap.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
+import org.springframework.security.authorization.method.AuthorizeReturnObject;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.oauth2.client.CommonOAuth2Provider;
@@ -12,6 +15,9 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class ProjectSecurityConfig {
+
+    @Autowired
+    private Environment environment;
 
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity httpSecurity)
@@ -32,8 +38,13 @@ public class ProjectSecurityConfig {
     }
 
     private ClientRegistration githubClientRegistration() {
+        String client_id = environment.getProperty("CLIENT_ID_GITHUB");
+        String client_secret = environment.getProperty("CLIENT_SECRET_GITHUB");
+
         return CommonOAuth2Provider.GITHUB.getBuilder("github")
-                .clientId("").clientSecret("").build();
+                .clientId(client_id)
+                .clientSecret(client_secret)
+                .build();
     }
 
     private ClientRegistration facebookClientRegistration() {
