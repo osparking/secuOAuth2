@@ -34,7 +34,7 @@ public class ProjectSecurityConfig {
     ClientRegistrationRepository clientRegistrationRepository() {
         var github = githubClientRegistration();
         var facebook = facebookClientRegistration();
-        return new InMemoryClientRegistrationRepository(facebook);
+        return new InMemoryClientRegistrationRepository(github, facebook);
     }
 
     private ClientRegistration githubClientRegistration() {
