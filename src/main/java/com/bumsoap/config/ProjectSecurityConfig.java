@@ -48,7 +48,12 @@ public class ProjectSecurityConfig {
     }
 
     private ClientRegistration facebookClientRegistration() {
+        String client_id = environment.getProperty("CLIENT_ID_FACEBOOK");
+        String client_secret = environment.getProperty("CLIENT_SECRET_FACEBOOK");
+
         return CommonOAuth2Provider.FACEBOOK.getBuilder("facebook")
-                .clientId("").clientSecret("").build();
+                .clientId(client_id)
+                .clientSecret(client_secret)
+                .build();
     }
 }
