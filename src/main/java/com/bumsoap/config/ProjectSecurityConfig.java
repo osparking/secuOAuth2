@@ -29,31 +29,4 @@ public class ProjectSecurityConfig {
                 .oauth2Login(Customizer.withDefaults());
         return httpSecurity.build();
     }
-
-    @Bean
-    ClientRegistrationRepository clientRegistrationRepository() {
-        var github = githubClientRegistration();
-        var facebook = facebookClientRegistration();
-        return new InMemoryClientRegistrationRepository(github, facebook);
-    }
-
-    private ClientRegistration githubClientRegistration() {
-        String client_id = environment.getProperty("CLIENT_ID_GITHUB");
-        String client_secret = environment.getProperty("CLIENT_SECRET_GITHUB");
-
-        return CommonOAuth2Provider.GITHUB.getBuilder("github")
-                .clientId(client_id)
-                .clientSecret(client_secret)
-                .build();
-    }
-
-    private ClientRegistration facebookClientRegistration() {
-        String client_id = environment.getProperty("CLIENT_ID_FACEBOOK");
-        String client_secret = environment.getProperty("CLIENT_SECRET_FACEBOOK");
-
-        return CommonOAuth2Provider.FACEBOOK.getBuilder("facebook")
-                .clientId(client_id)
-                .clientSecret(client_secret)
-                .build();
-    }
 }
